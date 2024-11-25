@@ -1,0 +1,28 @@
+{% load socialaccount_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="login-container">
+        <h1>Login</h1>
+        <!-- Google Login Button -->
+        <a href="{% provider_login_url 'google' %}" class="btn btn-primary">
+            Login with Google
+        </a>
+
+        <p>Or log in with your username and password:</p>
+        <!-- Default Django-Allauth Login Form -->
+        <form method="post" action="{% url 'account_login' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</body>
+</html>

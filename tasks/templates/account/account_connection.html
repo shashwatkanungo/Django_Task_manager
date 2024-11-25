@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>Account Connections</h2>
+    <p>Manage your third-party account connections below:</p>
+    
+    {% if socialaccount_set.exists %}
+        <h3>Connected Accounts</h3>
+        <ul>
+            {% for account in socialaccount_set.all %}
+                <li>
+                    {{ account.provider|title }} 
+                    <span>({{ account.uid }})</span>
+                    <form method="post" action="{% url 'account_connections' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="account" value="{{ account.id }}">
+                        <button type="submit" name="action" value="disconnect">Disconnect</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You currently have no third-party accounts connected to this account.</p>
+    {% endif %}
+
+    <h3>Add a Third-Party Account</h3>
+    <ul>
+        {% for provider in providers %}
+            <li>
+                <a href="{% provider_login_url provider.id %}">
+                    Connect with {{ provider.name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

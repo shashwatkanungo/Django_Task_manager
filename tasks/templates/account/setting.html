@@ -1,0 +1,27 @@
+<!-- {% load socialaccount_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Settings</title>
+</head>
+<body>
+    <h1>Account Settings</h1>
+
+    {% if user.socialaccount_set.all %}
+        <h2>Connected Accounts</h2>
+        <ul>
+            {% for social_account in user.socialaccount_set.all %}
+                <li>{{ social_account.provider }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You currently have no third-party accounts connected to this account.</p>
+    {% endif %}
+
+    <a href="{% provider_login_url 'google' %}" class="btn btn-primary">Add a Google Account</a>
+
+    <p>Or you can <a href="{% url 'account_logout' %}">sign out</a>.</p>
+</body>
+</html> -->
